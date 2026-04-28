@@ -1,0 +1,85 @@
+<mxfile host="app.diagrams.net" version="24.1.0">
+  <diagram id="Attendance_DFD" name="Attendance System DFD">
+    <mxGraphModel dx="1000" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- External Entity: Teacher -->
+        <mxCell id="teacher" value="Teacher / User" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Processes -->
+        <mxCell id="p1" value="1.0&#xa;Authenticate" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="280" y="40" width="100" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p2" value="2.0&#xa;Create Classroom" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="280" y="140" width="100" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p3" value="3.0&#xa;Add Students" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="280" y="240" width="100" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p4" value="4.0&#xa;Mark Attendance" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="280" y="340" width="100" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="p5" value="5.0&#xa;Generate Reports" style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="280" y="440" width="100" height="70" as="geometry" />
+        </mxCell>
+        
+        <!-- Data Store: Firestore -->
+        <mxCell id="db" value="D1: Firestore DB" style="shape=partialRectangle;whiteSpace=wrap;html=1;left=0;right=0;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="520" y="240" width="140" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Arrows from Teacher to Processes -->
+        <mxCell id="f1" value="Credentials" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.25;entryX=0;entryY=0.5;" edge="1" parent="1" source="teacher" target="p1">
+          <mxGeometry relative="1" as="geometry"><Array points="200 255, 200 75"/></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="f2" value="Class Info" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="teacher" target="p2">
+          <mxGeometry relative="1" as="geometry"><Array points="220 270, 220 175"/></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="f3" value="Student Info" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="teacher" target="p3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="f4" value="Attendance Data" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="teacher" target="p4">
+          <mxGeometry relative="1" as="geometry"><Array points="220 270, 220 375"/></mxGeometry>
+        </mxCell>
+        
+        <mxCell id="f5" value="Request" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.75;entryX=0;entryY=0.5;" edge="1" parent="1" source="teacher" target="p5">
+          <mxGeometry relative="1" as="geometry"><Array points="200 285, 200 475"/></mxGeometry>
+        </mxCell>
+        
+        <!-- Arrows from Processes to DB -->
+        <mxCell id="f6" edge="1" parent="1" source="p1" target="db" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry"><Array points="450 75, 450 220, 590 220"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f7" value="Store Class" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.25;" edge="1" parent="1" source="p2" target="db">
+          <mxGeometry relative="1" as="geometry"><Array points="440 175, 440 255"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f8" value="Store Student" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="p3" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f9" value="Store Marks" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.75;" edge="1" parent="1" source="p4" target="db">
+          <mxGeometry relative="1" as="geometry"><Array points="440 375, 440 285"/></mxGeometry>
+        </mxCell>
+        
+        <!-- Report Flow -->
+        <mxCell id="f10" value="Fetch Data" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" edge="1" parent="1" source="db" target="p5">
+          <mxGeometry relative="1" as="geometry"><Array points="590 475"/></mxGeometry>
+        </mxCell>
+        <mxCell id="f11" value="Report Output" style="edgeStyle=orthogonalEdgeStyle;html=1;exitX=0;exitY=1;entryX=0.5;entryY=1;" edge="1" parent="1" source="p5" target="teacher">
+          <mxGeometry relative="1" as="geometry"><Array points="100 510"/></mxGeometry>
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

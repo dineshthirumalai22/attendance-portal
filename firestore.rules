@@ -1,0 +1,32 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Allow users to read and write their own profile
+    match /profiles/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Allow authenticated users to manage their own classrooms
+    match /classrooms/{classroomId} {
+      allow read, write: if request.auth != null && request.resource.data.user_id == request.auth.uid;
+      allow read, update, delete: if request.auth != null && resource.data.user_id == request.auth.uid;
+    }
+    
+    // Allow authenticated users to manage students in their classrooms
+    match /students/{studentId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Allow authenticated users to manage attendance
+    match /attendance/{attendanceId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Allow authenticated users to manage timetable
+    match /timetable/{timetableId} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

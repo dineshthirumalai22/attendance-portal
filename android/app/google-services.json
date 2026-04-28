@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "65763368261",
+    "project_id": "attendance-portal-d88dc",
+    "storage_bucket": "attendance-portal-d88dc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65763368261:android:6ca7b45a0c878a2070322c",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1MKhW26hHiGmT_dq3fyGa6LoWX4Iimpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

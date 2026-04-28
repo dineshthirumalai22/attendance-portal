@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net" version="24.1.0">
+  <diagram id="System_Architecture" name="System Architecture">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Client Layer -->
+        <mxCell id="client_layer" value="Presentation Layer (Client)" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="280" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="flutter_app" value="Flutter Application" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="client_layer">
+          <mxGeometry x="60" y="40" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="platforms" value="Android | iOS | Web | Windows" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=2" vertex="1" parent="client_layer">
+          <mxGeometry x="40" y="110" width="200" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ui_comp" value="UI Components&#xa;State Management&#xa;Auth Screens&#xa;Reports UI" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="client_layer">
+          <mxGeometry x="60" y="160" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="http_client" value="HTTP Client (Dio/http)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="client_layer">
+          <mxGeometry x="60" y="300" width="160" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Communication Layer -->
+        <mxCell id="comm_layer" value="REST API (JSON over HTTP)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="340" y="210" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow_api" edge="1" parent="1" source="http_client" target="flask_api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- Backend Layer -->
+        <mxCell id="backend_layer" value="Business Logic Layer (Backend)" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" vertex="1" parent="1">
+          <mxGeometry x="500" y="40" width="280" height="400" as="geometry" />
+        </mxCell>
+        <mxCell id="flask_api" value="Flask REST Server" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="backend_layer">
+          <mxGeometry x="60" y="40" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="logic" value="Auth Controller&#xa;Classroom Mgmt&#xa;Student Mgmt&#xa;Attendance logic&#xa;Excel Generator" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="backend_layer">
+          <mxGeometry x="60" y="130" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="db_adapter" value="Database Adapter&#xa;(SQLite3 Module)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="backend_layer">
+          <mxGeometry x="60" y="280" width="160" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Data Layer -->
+        <mxCell id="data_layer" value="Data Layer" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" vertex="1" parent="1">
+          <mxGeometry x="500" y="480" width="280" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="sqlite_db" value="SQLite Database&#xa;(attendance_central.db)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="data_layer">
+          <mxGeometry x="90" y="40" width="100" height="90" as="geometry" />
+        </mxCell>
+        
+        <!-- External Services -->
+        <mxCell id="ext_layer" value="External Services" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" vertex="1" parent="1">
+          <mxGeometry x="40" y="480" width="280" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="smtp" value="Gmail SMTP Server" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="ext_layer">
+          <mxGeometry x="80" y="40" width="120" height="80" as="geometry" />
+        </mxCell>
+        
+        <!-- Connections -->
+        <mxCell id="conn_db" edge="1" parent="1" source="db_adapter" target="sqlite_db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_smtp" edge="1" parent="1" source="flask_api" target="smtp">
+          <mxGeometry relative="1" as="geometry">
+            <Array points="450 110, 450 560" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_ui_http" edge="1" parent="client_layer" source="ui_comp" target="http_client">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_logic_db" edge="1" parent="backend_layer" source="logic" target="db_adapter">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
